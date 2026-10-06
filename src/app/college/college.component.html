@@ -1,0 +1,155 @@
+<div class="college-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="college-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">🏛️ College Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    College
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    College
+                </h1>
+
+                <p>
+                    Manage college information including address, state,
+                    city and contact details with a modern and secure interface.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-building"></i>
+                        College Information Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-location-dot"></i>
+                        Address & Location Details
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-phone"></i>
+                        Contact Information Tracking
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="college-card">
+
+                <h2 *ngIf="!form.data.id">Add College</h2>
+                <h2 *ngIf="form.data.id>0">Update College</h2>
+
+                <h2 style="color: green;" *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <h2 class="text-danger" *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <form>
+
+                    <div class="mb-3">
+
+                        <input type="text" name="name" [(ngModel)]="form.data.name" class="form-control"
+                            placeholder="College Name">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.name}}
+                        </span>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="text" name="address" [(ngModel)]="form.data.address" class="form-control"
+                            placeholder="College Address">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.address}}
+                        </span>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="state" [(ngModel)]="form.data.state" class="form-control"
+                                placeholder="State">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.state}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="city" [(ngModel)]="form.data.city" class="form-control"
+                                placeholder="City">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.city}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <input type="text" name="phoneNo" [(ngModel)]="form.data.phoneNo" maxlength="10"
+                            class="form-control" placeholder="Phone Number">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.phoneNo}}
+                        </span>
+
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button type="button" (click)="submit()" class="btn-save flex-fill">
+
+                            Save College
+
+                        </button>
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

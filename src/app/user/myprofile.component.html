@@ -1,0 +1,264 @@
+<div class="user-page">
+
+    <!-- Floating Background -->
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="profile-wrapper">
+
+            <!-- ================= LEFT INTRO SECTION ================= -->
+
+            <div class="left-side">
+
+                <span class="badge">
+                    <i class="fa fa-user"></i>
+                    My Profile
+                </span>
+
+                <h1>
+                    Manage Your
+                    <br>
+                    Profile
+                </h1>
+
+                <p>
+                    Update your personal information and keep your account details up to date.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-user"></i>
+                        Personal Information
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-shield-alt"></i>
+                        Secure Account
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-edit"></i>
+                        Easy Profile Updates
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= PROFILE IMAGE CARD ================= -->
+
+            <div class="profile-card">
+                <div class="profile-image">
+
+                    <!-- Selected Image Preview -->
+                    <img *ngIf="form.data.imagePreview" [src]="form.data.imagePreview">
+
+                    <!-- Existing Image -->
+                    <img *ngIf="!form.data.imagePreview && form.data.imageId"
+                        [src]="'http://localhost:8080/User/profilePic/' + form.data.id">
+
+                    <!-- Default Image -->
+                    <img *ngIf="!form.data.imagePreview && !form.data.imageId" src="assets/images/default-user.png">
+
+                </div>
+
+                <h3>
+                    {{form.data.firstName}}
+                    {{form.data.lastName}}
+                </h3>
+
+                <p class="email">
+                    {{form.data.loginId}}
+                </p>
+
+                <p class="mobile">
+                    {{form.data.phone}}
+                </p>
+
+                <!-- <button type="button" class="btn-upload" (click)="fileInput.click()">
+
+                    <i class="fa fa-camera"></i>
+                    Change Photo
+
+                </button>
+
+                <input #fileInput type="file" hidden (change)="onFileSelect($event)">
+
+                <button type="button" class="btn-save-photo" (click)="myFile()">
+
+                    Upload
+
+                </button> -->
+
+                <button type="button" class="btn-upload" (click)="fileInput.click()">
+                    <i class="fa-solid fa-camera"></i>
+                    {{ form.data.id ? 'Change Photo' : 'Upload Photo' }}
+                </button>
+
+                <input #fileInput type="file" accept="image/*" hidden (change)="onFileSelect($event)">
+
+            </div>
+
+            <!-- ================= DETAILS CARD START ================= -->
+
+            <div class="details-card">
+
+                <h2>My Profile</h2>
+
+                <h3 class="text-success" *ngIf="!form.error && form.message">
+
+                    {{form.message}}
+
+                </h3>
+
+                <h3 class="text-danger" *ngIf="form.error && form.message">
+
+                    {{form.message}}
+
+                </h3>
+
+                <form>
+                    <!-- Email -->
+
+                    <div class="mb-3">
+
+                        <label>Email</label>
+
+                        <input type="text" class="form-control" name="loginId" [(ngModel)]="form.data.loginId" readonly>
+
+                        <span class="text-danger">
+                            {{form.inputerror.loginId}}
+                        </span>
+
+                    </div>
+
+                    <!-- First Name -->
+
+                    <div class="mb-3">
+
+                        <label>First Name</label>
+
+                        <input type="text" class="form-control" name="firstName" [(ngModel)]="form.data.firstName">
+
+                        <span class="text-danger">
+                            {{form.inputerror.firstName}}
+                        </span>
+
+                    </div>
+
+                    <!-- Last Name -->
+
+                    <div class="mb-3">
+
+                        <label>Last Name</label>
+
+                        <input type="text" class="form-control" name="lastName" [(ngModel)]="form.data.lastName">
+
+                        <span class="text-danger">
+                            {{form.inputerror.lastName}}
+                        </span>
+
+                    </div>
+
+                    <!-- Mobile -->
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>Mobile Number</label>
+
+                            <input type="text" class="form-control" maxlength="10" name="phone"
+                                [(ngModel)]="form.data.phone">
+
+                            <span class="text-danger">
+                                {{form.inputerror.phone}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>Alternate Mobile</label>
+
+                            <input type="text" class="form-control" maxlength="10" name="alternateMobile"
+                                [(ngModel)]="form.data.alternateMobile">
+
+                            <span class="text-danger">
+                                {{form.inputerror.alternateMobile}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Gender -->
+
+                    <div class="mb-3">
+
+                        <label>Gender</label>
+
+                        <select class="form-select custom-select" name="gender" [(ngModel)]="form.data.gender">
+
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+
+                        </select>
+
+                        <span class="text-danger">
+                            {{form.inputerror.gender}}
+                        </span>
+
+                    </div>
+
+                    <!-- Date of Birth -->
+
+                    <div class="mb-3">
+
+                        <label>Date of Birth</label>
+
+                        <input type="date" class="form-control" name="dob" [(ngModel)]="form.data.dob"
+                            [ngModel]="form.data.dob | date:'yyyy-MM-dd'">
+
+                        <span class="text-danger">
+                            {{form.inputerror.dob}}
+                        </span>
+
+                    </div>
+
+                    <!-- Buttons -->
+
+                    <div class="button-group">
+
+                        <button type="button" class="btn-save" (click)="myProfile()">
+
+                            <i class="fa fa-save"></i>
+                            Update Profile
+
+                        </button>
+
+                        <button type="button" class="btn-reset" (click)="reset()">
+
+                            <i class="fa fa-undo"></i>
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- END DETAILS CARD -->
+
+        </div>
+
+    </div>
+
+</div>

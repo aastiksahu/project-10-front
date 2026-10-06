@@ -1,0 +1,150 @@
+<div class="insurance-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="insurance-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">🛡 Insurance Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Insurance
+                </h1>
+
+                <h1 *ngIf="form.data.id > 0">
+                    Update Existing
+                    <br>
+                    Insurance
+                </h1>
+
+                <p>
+                    Add and manage insurance policies securely within the system.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-file-contract"></i>
+                        Policy Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-shield-alt"></i>
+                        Secure Records
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-calendar-check"></i>
+                        Expiry Tracking
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="insurance-card">
+
+                <h2 *ngIf="!form.data.id">Add Insurance</h2>
+                <h2 *ngIf="form.data.id > 0">Update Insurance</h2>
+
+                <h2 class="text-success" *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <h2 class="text-danger" *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <form>
+
+                    <div class="mb-3">
+                        <input type="text"
+                               name="policyHolderName"
+                               [(ngModel)]="form.data.policyHolderName"
+                               class="form-control"
+                               placeholder="Policy Holder Name">
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.policyHolderName}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <select name="policyType"
+                                [(ngModel)]="form.data.policyType"
+                                class="form-select custom-select">
+
+                            <option value="undefined">Select Policy Type</option>
+                            <option value="Life Insurance">Life Insurance</option>
+                            <option value="Health Insurance">Health Insurance</option>
+                            <option value="Vehicle Insurance">Vehicle Insurance</option>
+                            <option value="Home Insurance">Home Insurance</option>
+                            <option value="Travel Insurance">Travel Insurance</option>
+                            <option value="Term Insurance">Term Insurance</option>
+
+                        </select>
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.policyType}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="number"
+                               name="premiumAmount"
+                               [(ngModel)]="form.data.premiumAmount"
+                               class="form-control"
+                               placeholder="Premium Amount">
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.premiumAmount}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text"
+                               name="expiryDate"
+                               [(ngModel)]="form.data.expiryDate"
+                               [ngModel]="form.data.expiryDate | date:'yyyy-MM-dd'"
+                               class="form-control"
+                               placeholder="Expiry Date"
+                               onfocus="(this.type='date')"
+                               onblur="if(!this.value)this.type='text'">
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.expiryDate}}
+                        </span>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button (click)="submit()" class="btn-save flex-fill">
+                            Save Insurance
+                        </button>
+
+                        <button (click)="reset()" class="btn-reset flex-fill">
+                            Reset
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

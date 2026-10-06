@@ -1,0 +1,231 @@
+<div class="insurance-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="insurance-list-card">
+
+            <!-- Header -->
+
+            <div class="text-center mb-4">
+
+                <span class="badge-custom">
+                    🛡 Insurance Management
+                </span>
+
+                <h1 class="page-title">
+                    Insurance List
+                </h1>
+
+                <p class="page-subtitle">
+                    Search, manage and maintain insurance records
+                </p>
+
+                <h5 class="text-success" *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+                <h5 class="text-danger" *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+            </div>
+
+            <!-- Search Panel -->
+
+            <div class="search-card">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-md-4 mb-3">
+
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Policy Holder Name"
+                               [(ngModel)]="form.searchParams.policyHolderName">
+
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+
+                        <select class="form-select"
+                                [(ngModel)]="form.searchParams.policyType">
+
+                            <option value="undefined">
+                                Select Policy Type
+                            </option>
+
+                            <option value="Life Insurance">
+                                Life Insurance
+                            </option>
+
+                            <option value="Health Insurance">
+                                Health Insurance
+                            </option>
+
+                            <option value="Vehicle Insurance">
+                                Vehicle Insurance
+                            </option>
+
+                            <option value="Home Insurance">
+                                Home Insurance
+                            </option>
+
+                            <option value="Travel Insurance">
+                                Travel Insurance
+                            </option>
+
+                            <option value="Term Insurance">
+                                Term Insurance
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+
+                    <button class="btn-save me-2"
+                            (click)="search()">
+
+                        Search
+
+                    </button>
+
+                    <button class="btn-reset"
+                            (click)="reset()">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div class="table-responsive mt-4"
+                 *ngIf="form.list.length > 0">
+
+                <table class="table custom-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                <input type="checkbox"
+                                       [(ngModel)]="isMasterSel"
+                                       (change)="checkUncheckAll($event)">
+                            </th>
+
+                            <th>S.No</th>
+                            <th>Policy Holder</th>
+                            <th>Policy Type</th>
+                            <th>Premium Amount</th>
+                            <th>Expiry Date</th>
+                            <th>Edit</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let m of form.list; let i=index">
+
+                            <td>
+
+                                <input type="checkbox"
+                                       #checkboxes
+                                       (change)="checklistUpdate()"
+                                       [id]="m.id">
+
+                            </td>
+
+                            <td>
+                                {{(form.pageNo*5)+i+1}}
+                            </td>
+
+                            <td>
+                                {{m.policyHolderName}}
+                            </td>
+
+                            <td>
+                                {{m.policyType}}
+                            </td>
+
+                            <td>
+                                ₹ {{m.premiumAmount}}
+                            </td>
+
+                            <td>
+                                {{m.expiryDate | date:'dd-MM-yyyy'}}
+                            </td>
+
+                            <td>
+
+                                <button class="btn btn-sm btn-primary"
+                                        (click)="forward('/insurance/' + m.id)">
+
+                                    Edit
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Footer Buttons -->
+
+            <div class="action-panel mt-4">
+
+                <button class="btn-reset"
+                        (click)="previous()"
+                        [disabled]="form.pageNo == 0">
+
+                    Previous
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="forward('/insurance')">
+
+                    New Insurance
+
+                </button>
+
+                <button class="btn-danger-custom"
+                        (click)="deleteMany()">
+
+                    Delete
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="next()"
+                        [disabled]="form.nextListSize == 0">
+
+                    Next
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

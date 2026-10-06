@@ -1,0 +1,207 @@
+<div class="user-page">
+
+    <!-- Floating Background -->
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="user-list-card">
+
+            <!-- Header -->
+
+            <div class="text-center mb-4">
+
+                <span class="badge-custom">
+                    📑 Marksheet Management
+                </span>
+
+                <h1 class="page-title">
+                    Marksheet List
+                </h1>
+
+                <p class="page-subtitle">
+                    Search, manage and maintain student marksheets
+                </p>
+
+                <div class="text-center mt-3" *ngIf="form.list.length == 0">
+
+                    <h4 class="text-white">
+                        No Records Found
+                    </h4>
+
+                </div>
+
+                <h5 class="text-success" *ngIf="!form.error && form.message">
+
+                    {{form.message}}
+
+                </h5>
+
+                <h5 class="text-danger" *ngIf="form.error && form.message">
+
+                    {{form.message}}
+
+                </h5>
+
+            </div>
+
+            <!-- Search Panel -->
+
+            <div class="search-card">
+
+                <div class="row justify-content-center">
+
+                    <div class="col-md-6 mb-3">
+
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Enter Student Name"
+                               name="name"
+                               [(ngModel)]="form.searchParams.name">
+
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+
+                    <button class="btn-save me-2" (click)="search()">
+
+                        Search
+
+                    </button>
+
+                    <button class="btn-reset" (click)="reset()">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div class="table-responsive mt-4" *ngIf="form.list.length > 0">
+
+                <table class="table custom-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                <input type="checkbox"
+                                       [(ngModel)]="isMasterSel"
+                                       (change)="checkUncheckAll($event)">
+                            </th>
+
+                            <th>S.No</th>
+                            <th>Roll No</th>
+                            <th>Name</th>
+                            <th>Physics</th>
+                            <th>Chemistry</th>
+                            <th>Maths</th>
+                            <th>Edit</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let m of form.list; let i=index">
+
+                            <td>
+
+                                <input type="checkbox"
+                                       #checkboxes
+                                       (change)="checklistUpdate()"
+                                       [id]="m.id"
+                                       [value]="isMasterSel">
+
+                            </td>
+
+                            <td>{{(form.pageNo*5)+i+1}}</td>
+                            <td>{{m.rollNo}}</td>
+                            <td>{{m.name}}</td>
+                            <td>{{m.physics}}</td>
+                            <td>{{m.chemistry}}</td>
+                            <td>{{m.maths}}</td>
+
+                            <td>
+
+                                <button class="btn btn-sm btn-primary"
+                                        (click)="forward('/marksheet/' + m.id)">
+
+                                    Edit
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Footer Buttons -->
+
+            <div class="action-panel mt-4" *ngIf="form.list.length > 0">
+
+                <button class="btn-reset"
+                        (click)="previous()"
+                        [disabled]="form.pageNo == 0">
+
+                    Previous
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="forward('/marksheet')">
+
+                    New Marksheet
+
+                </button>
+
+                <button class="btn-danger-custom"
+                        (click)="deleteMany()">
+
+                    Delete
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="next()"
+                        [disabled]="form.nextListSize == 0">
+
+                    Next
+
+                </button>
+
+            </div>
+
+            <!-- Back Button -->
+
+            <div class="text-center mt-4" *ngIf="form.list.length == 0">
+
+                <button class="btn-reset"
+                        (click)="reset()">
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

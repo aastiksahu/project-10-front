@@ -1,0 +1,354 @@
+<div class="user-page">
+
+    <!-- Floating Background -->
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="user-list-card">
+
+            <!-- Header -->
+            <div class="text-center mb-4">
+
+                <span class="badge-custom">
+                    📄 Student Result
+                </span>
+
+                <h1 class="page-title">
+                    Get Marksheet
+                </h1>
+
+                <p class="page-subtitle">
+                    Search and view student marksheet by Roll Number
+                </p>
+
+                <!-- Success -->
+                <h5 class="text-success" *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+                <!-- Error -->
+                <h5 class="text-danger" *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+            </div>
+
+            <!-- Search Panel -->
+            <div class="search-card">
+
+                <form (ngSubmit)="go()">
+
+                    <div class="row justify-content-center align-items-center">
+
+                        <div class="col-lg-5 col-md-6 mb-3">
+
+                            <input type="text" class="form-control" name="rollNo" [(ngModel)]="form.data.rollNo" placeholder="Enter Roll Number">
+
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 text-center mb-3">
+
+                            <button type="submit" class="btn-save me-2">
+
+                                Search
+
+                            </button>
+
+                            <button type="button" class="btn-reset" (click)="reset()">
+
+                                Reset
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- Marksheet Table -->
+
+            <div class="table-responsive mt-4" *ngIf="form.list && form.list.rollNo">
+
+                <table class="table custom-table">
+
+                    <tbody>
+
+                        <tr>
+
+                            <th colspan="2">
+                                Roll Number
+                            </th>
+
+                            <td colspan="3">
+                                {{form.list.rollNo}}
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th colspan="2">
+                                Student Name
+                            </th>
+
+                            <td colspan="3">
+                                {{form.list.name}}
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Max Marks
+                            </th>
+
+                            <th>
+                                Min Marks
+                            </th>
+
+                            <th>
+                                Obtained
+                            </th>
+
+                            <th>
+                                Grade
+                            </th>
+
+                        </tr>
+
+                        <!-- Physics -->
+
+                        <tr>
+
+                            <td>Physics</td>
+
+                            <td>100</td>
+
+                            <td>35</td>
+
+                            <td>
+
+                                {{form.list.physics}}
+
+                                <span *ngIf="form.list.physics<35" class="text-danger">
+
+                                    *
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <b *ngIf="form.list.physics>=90">A++</b>
+
+                                <b *ngIf="form.list.physics>=80 && form.list.physics<90">A</b>
+
+                                <b *ngIf="form.list.physics>=70 && form.list.physics<80">B++</b>
+
+                                <b *ngIf="form.list.physics>=60 && form.list.physics<70">B</b>
+
+                                <b *ngIf="form.list.physics>=50 && form.list.physics<60">C++</b>
+
+                                <b *ngIf="form.list.physics>=40 && form.list.physics<50">C</b>
+
+                                <b *ngIf="form.list.physics>=35 && form.list.physics<40">D</b>
+
+                                <b class="text-danger" *ngIf="form.list.physics<35">
+
+                                    F
+
+                                </b>
+
+                            </td>
+
+                        </tr>
+
+                        <!-- Chemistry -->
+
+                        <tr>
+
+                            <td>Chemistry</td>
+
+                            <td>100</td>
+
+                            <td>35</td>
+
+                            <td>
+
+                                {{form.list.chemistry}}
+
+                                <span *ngIf="form.list.chemistry<35" class="text-danger">
+
+                                    *
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <b *ngIf="form.list.chemistry>=90">A++</b>
+
+                                <b *ngIf="form.list.chemistry>=80 && form.list.chemistry<90">A</b>
+
+                                <b *ngIf="form.list.chemistry>=70 && form.list.chemistry<80">B++</b>
+
+                                <b *ngIf="form.list.chemistry>=60 && form.list.chemistry<70">B</b>
+
+                                <b *ngIf="form.list.chemistry>=50 && form.list.chemistry<60">C++</b>
+
+                                <b *ngIf="form.list.chemistry>=40 && form.list.chemistry<50">C</b>
+
+                                <b *ngIf="form.list.chemistry>=35 && form.list.chemistry<40">D</b>
+
+                                <b class="text-danger" *ngIf="form.list.chemistry<35">
+
+                                    F
+
+                                </b>
+
+                            </td>
+
+                        </tr>
+
+                        <!-- Maths -->
+
+                        <tr>
+
+                            <td>Maths</td>
+
+                            <td>100</td>
+
+                            <td>35</td>
+
+                            <td>
+
+                                {{form.list.maths}}
+
+                                <span *ngIf="form.list.maths<35" class="text-danger">
+
+                                    *
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <b *ngIf="form.list.maths>=90">A++</b>
+
+                                <b *ngIf="form.list.maths>=80 && form.list.maths<90">A</b>
+
+                                <b *ngIf="form.list.maths>=70 && form.list.maths<80">B++</b>
+
+                                <b *ngIf="form.list.maths>=60 && form.list.maths<70">B</b>
+
+                                <b *ngIf="form.list.maths>=50 && form.list.maths<60">C++</b>
+
+                                <b *ngIf="form.list.maths>=40 && form.list.maths<50">C</b>
+
+                                <b *ngIf="form.list.maths>=35 && form.list.maths<40">D</b>
+
+                                <b class="text-danger" *ngIf="form.list.maths<35">
+
+                                    F
+
+                                </b>
+
+                            </td>
+
+                        </tr>
+                        <!-- Total -->
+
+                        <tr>
+
+                            <th colspan="2">
+                                Total Marks
+                            </th>
+
+                            <td colspan="3">
+
+                                {{form.list.physics +
+                                form.list.chemistry +
+                                form.list.maths}}
+
+                            </td>
+
+                        </tr>
+
+                        <!-- Percentage -->
+
+                        <tr *ngIf="form.list.physics>=35 &&
+                                   form.list.chemistry>=35 &&
+                                   form.list.maths>=35">
+
+                            <th colspan="2">
+                                Percentage
+                            </th>
+
+                            <td colspan="3">
+
+                                {{
+                                ((form.list.physics +
+                                form.list.chemistry +
+                                form.list.maths) * 100) / 300
+                                | number:'1.2-2'
+                                }} %
+
+                            </td>
+
+                        </tr>
+
+                        <!-- Result -->
+
+                        <tr>
+
+                            <th colspan="2">
+                                Result
+                            </th>
+
+                            <td colspan="3">
+
+                                <span class="text-success" *ngIf="form.list.physics>=35 &&
+                                           form.list.chemistry>=35 &&
+                                           form.list.maths>=35">
+
+                                    <b>PASS</b>
+
+                                </span>
+
+                                <span class="text-danger" *ngIf="form.list.physics<35 ||
+                                           form.list.chemistry<35 ||
+                                           form.list.maths<35">
+
+                                    <b>FAIL</b>
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

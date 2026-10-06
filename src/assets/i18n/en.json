@@ -1,0 +1,110 @@
+{
+    "Login": "Login",
+    "Sign In": "Sign In",
+    "SignUp": "SignUp",
+    "Forget my password?": "Forget my password?",
+    "Login Id": "Login Id",
+    "Password": "Password",
+    "UserRegistration": "User Registration",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "LoginId": "Login Id",
+    "Password": "Password",
+    "DateOfBirth": "Date of Birth",
+    "Gender": "Gender",
+    "Mobile": "Mobile",
+    "Buttons": {
+        "SignUp": "Sign Up",
+        "Reset": "Reset"
+    },
+    "GenderOptions": {
+        "Select": "------------Select------------",
+        "Male": "Male",
+        "Female": "Female"
+    },
+    "Greetings": {
+        "HiUser": "Hi, {{name}}",
+        "HiGuest": "Hi, Guest"
+    },
+    "Links": {
+        "MyProfile": "My Profile",
+        "ChangePassword": "Change Password",
+        "User": "User",
+        "AddUser": "Add User",
+        "UserList": "User List",
+        "Role": "Role",
+        "AddRole": "Add Role",
+        "RoleList": "Role List",
+        "College": "College",
+        "AddCollege": "Add College",
+        "CollegeList": "College List",
+        "Student": "Student",
+        "AddStudent": "Add Student",
+        "StudentList": "Student List",
+        "Marksheet": "Marksheet",
+        "AddMarksheet": "Add Marksheet",
+        "MarksheetList": "Marksheet List",
+        "MarksheetMeritList": "Marksheet Merit List",
+        "GetMarksheet": "Get Marksheet",
+        "Course": "Course",
+        "AddCourse": "Add Course",
+        "CourseList": "Course List",
+        "Subject": "Subject",
+        "AddSubject": "Add Subject",
+        "SubjectList": "Subject List",
+        "TimeTable": "TimeTable",
+        "AddTimetable": "Add Timetable",
+        "TimetableList": "Timetable List",
+        "Faculty": "Faculty",
+        "AddFaculty": "Add Faculty",
+        "FacultyList": "Faculty List",
+        "Logout": "Logout",
+        "Dashboard": "Dashboard",
+        "Login": "Login",
+        "Insurance": "Insurance",
+        "AddInsurance": "Add Insaurance",
+        "InsuranceList": "Insurance List",
+        "Vehicle": "Vehicle",
+        "AddVehicle": "Add Vehicle",
+        "VehicleList": "Vehicle List"
+    },
+    "LocaleSelect": {
+        "Select": "Select Language",
+        "English": "English",
+        "Hindi": "Hindi"
+    },
+    "UserForm": {
+        "AddUser": "Add User",
+        "UpdateUser": "Update User",
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "LoginId": "Login Id",
+        "Password": "Password",
+        "DateOfBirth": "Date of Birth",
+        "Gender": "Gender",
+        "Role": "Role",
+        "Mobile": "Mobile",
+        "AlternateMobile": "Alternate Mobile",
+        "Status": "Status",
+        "Placeholders": {
+            "FirstName": "Enter First Name",
+            "LastName": "Enter Last Name",
+            "LoginId": "Enter Login ID",
+            "Password": "Enter Password",
+            "DateOfBirth": "Select Date of Birth",
+            "Mobile": "Enter Mobile No.",
+            "AlternateMobile": "Enter Alternate Mobile No."
+        },
+        "SelectOptions": {
+            "Select": "------------Select------------",
+            "Male": "Male",
+            "Female": "Female",
+            "Active": "Active",
+            "Inactive": "Inactive"
+        },
+        "Buttons": {
+            "Save": "Save",
+            "List": "List"
+        }
+    }
+}

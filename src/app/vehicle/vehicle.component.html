@@ -1,0 +1,168 @@
+
+<div class="insurance-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="insurance-container">
+
+            <!-- Left Section -->
+            <div class="left-side">
+
+                <span class="badge">🚗 Vehicle Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Vehicle
+                </h1>
+
+                <h1 *ngIf="form.data.id > 0">
+                    Update Existing
+                    <br>
+                    Vehicle
+                </h1>
+
+                <p>
+                    Add and manage vehicle information securely within the system.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-car"></i>
+                        Vehicle Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-cogs"></i>
+                        Vehicle Details
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-tag"></i>
+                        Price Tracking
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+            <div class="insurance-card">
+
+                <h2 *ngIf="!form.data.id">
+                    Add Vehicle
+                </h2>
+
+                <h2 *ngIf="form.data.id > 0">
+                    Update Vehicle
+                </h2>
+
+                <!-- Success Message -->
+                <h2 style="color: green;"
+                    *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <!-- Error Message -->
+                <h2 class="text-danger"
+                    *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <form>
+
+                    <!-- Vehicle Name -->
+                    <div class="mb-3">
+
+                        <input type="text"
+                               name="vehicleName"
+                               [(ngModel)]="form.data.vehicleName"
+                               class="form-control"
+                               placeholder="Vehicle Name">
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.vehicleName}}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Model -->
+                    <div class="mb-3">
+
+                        <input type="text"
+                               name="model"
+                               [(ngModel)]="form.data.model"
+                               class="form-control"
+                               placeholder="Vehicle Model">
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.model}}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Color -->
+                    <div class="mb-3">
+
+                        <input type="text"
+                               name="color"
+                               [(ngModel)]="form.data.color"
+                               class="form-control"
+                               placeholder="Vehicle Color">
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.color}}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Price -->
+                    <div class="mb-3">
+
+                        <input type="number"
+                               name="price"
+                               [(ngModel)]="form.data.price"
+                               class="form-control"
+                               placeholder="Vehicle Price">
+
+                        <span style="color:red;font-size:12px;">
+                            {{form.inputerror.price}}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button
+                            (click)="submit()"
+                            class="btn-save flex-fill">
+                            Save Vehicle
+                        </button>
+
+                        <button
+                            (click)="reset()"
+                            class="btn-reset flex-fill">
+                            Reset
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

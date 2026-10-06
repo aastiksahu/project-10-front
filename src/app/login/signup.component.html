@@ -1,0 +1,177 @@
+<div class="signup-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="signup-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">🚀 Welcome to Rays</span>
+
+                <h1>
+                    Create Your Future
+                    <br>
+                    With Us
+                </h1>
+
+                <p>
+                    Join thousands of users managing their data
+                    securely and efficiently.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-shield-alt"></i>
+                        Secure Platform
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-bolt"></i>
+                        Fast Performance
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-cloud"></i>
+                        Cloud Enabled
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="signup-card">
+
+                <h2>Sign Up</h2>
+
+                <h2 style="color: rgb(38, 222, 38);" *ngIf="!form.error && form.message">{{ form.message }}</h2>
+                <h2 style="color: rgb(206, 25, 25);" *ngIf="form.error && form.message">{{ form.message }}</h2>
+
+                <!-- ================= PROFILE IMAGE ================= -->
+
+                <div class="profile-upload">
+
+                    <!-- New Selected Image -->
+                    <img *ngIf="form.data.imagePreview" [src]="form.data.imagePreview" class="profile-image">
+
+                    <!-- Existing Image -->
+                    <img *ngIf="!form.data.imagePreview && form.data.imageId"
+                        [src]="'http://localhost:8080/User/profilePic/' + form.data.id" class="profile-image">
+
+                    <!-- Default Image -->
+                    <img *ngIf="!form.data.imagePreview && !form.data.imageId" src="assets/images/default-user.png"
+                        class="profile-image">
+
+                    <label class="upload-btn">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        {{form.data.id ? 'Change Photo' : 'Upload Photo'}}
+
+                        <input type="file" accept="image/*" (change)="onFileSelect($event)" hidden>
+
+                    </label>
+
+                </div>
+
+                <!-- ================================================ -->
+
+                <form>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="firstName" [(ngModel)]="form.data.firstName" class="form-control"
+                                placeholder="First Name">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.firstName}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="lastName" [(ngModel)]="form.data.lastName" class="form-control"
+                                placeholder="Last Name">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.lastName}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" name="loginId" [(ngModel)]="form.data.loginId" class="form-control"
+                            placeholder="Login ID">
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.loginId}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="password" name="password" [(ngModel)]="form.data.password" class="form-control"
+                            placeholder="Password">
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.password}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" name="dob" [(ngModel)]="form.data.dob"
+                            [ngModel]="form.data.dob | date:'yyyy-MM-dd'" class="form-control"
+                            placeholder="Date of Birth" onfocus="(this.type='date')"
+                            onblur="if(!this.value)this.type='text'">
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.dob}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <select name="gender" [(ngModel)]="form.data.gender" class="form-select custom-select">
+                            <option value="undefined">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.gender}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" name="phone" [(ngModel)]="form.data.phone" maxlength="10"
+                            class="form-control" placeholder="Mobile Number">
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.phone}}
+                        </span>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button (click)="signUp()" class="btn-create">
+                            Sign Up
+                        </button>
+
+                        <button type="reset" class="btn-reset flex-fill">
+                            Reset
+                        </button>
+
+                    </div>
+
+                    <div class="login-link">
+                        Already have an account?
+                        <a routerLink="/login">Login</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

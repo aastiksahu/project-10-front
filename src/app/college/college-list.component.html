@@ -1,0 +1,206 @@
+<div class="user-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="user-list-card">
+
+            <!-- Header -->
+
+            <div class="text-center mb-4">
+
+                <span class="badge-custom">
+                    🏛️ College Management
+                </span>
+
+                <h1 class="page-title">
+                    College List
+                </h1>
+
+                <p class="page-subtitle">
+                    Search, manage and maintain college records
+                </p>
+
+                <div class="text-center mt-4" *ngIf="form.list.length == 0">
+
+                    <h4 class="text-white">
+                        No Records Found
+                    </h4>
+
+                </div>
+
+                <h5 class="text-success" *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+                <h5 class="text-danger" *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+            </div>
+
+            <!-- Search Panel -->
+
+            <div class="search-card">
+
+                <div class="row">
+
+                    <div class="col-md-12 mb-3">
+
+                        <input type="text"
+                               class="form-control"
+                               placeholder="College Name"
+                               [(ngModel)]="form.searchParams.name">
+
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+
+                    <button class="btn-save me-2"
+                            (click)="search()">
+
+                        Search
+
+                    </button>
+
+                    <button class="btn-reset"
+                            (click)="reset()">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div class="table-responsive mt-4"
+                 *ngIf="form.list.length > 0">
+
+                <table class="table custom-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                <input type="checkbox"
+                                       [(ngModel)]="isMasterSel"
+                                       (change)="checkUncheckAll($event)">
+                            </th>
+
+                            <th>S.No</th>
+                            <th>College Name</th>
+                            <th>Address</th>
+                            <th>State</th>
+                            <th>City</th>
+                            <th>Phone No</th>
+                            <th>Edit</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let m of form.list; let i=index">
+
+                            <td>
+
+                                <input type="checkbox"
+                                       #checkboxes
+                                       (change)="checklistUpdate()"
+                                       [id]="m.id"
+                                       [value]="isMasterSel">
+
+                            </td>
+
+                            <td>{{(form.pageNo*5)+i+1}}</td>
+                            <td>{{m.name}}</td>
+                            <td>{{m.address}}</td>
+                            <td>{{m.state}}</td>
+                            <td>{{m.city}}</td>
+                            <td>{{m.phoneNo}}</td>
+
+                            <td>
+
+                                <button class="btn btn-sm btn-primary"
+                                        (click)="forward('/college/' + m.id)">
+
+                                    Edit
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Bottom Action Buttons -->
+
+            <div class="action-panel mt-4"
+                 *ngIf="form.list.length > 0">
+
+                <button class="btn-reset"
+                        (click)="previous()"
+                        [disabled]="form.pageNo == 0">
+
+                    Previous
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="forward('/college')">
+
+                    New College
+
+                </button>
+
+                <button class="btn-danger-custom"
+                        (click)="deleteMany()">
+
+                    Delete
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="next()"
+                        [disabled]="form.nextListSize == 0">
+
+                    Next
+
+                </button>
+
+            </div>
+
+            <!-- Back Button -->
+
+            <div class="text-center mt-4"
+                 *ngIf="form.list.length == 0">
+
+                <button class="btn-reset"
+                        (click)="reset()">
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

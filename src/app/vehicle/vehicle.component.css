@@ -1,0 +1,335 @@
+/* ===================================
+   VEHICLE PAGE
+=================================== */
+
+.insurance-page {
+
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #0369a1
+    );
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 120px 0 60px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.insurance-container {
+
+    display: flex;
+
+    gap: 50px;
+
+    align-items: center;
+}
+
+
+/* ===================================
+   FLOATING BACKGROUND
+=================================== */
+
+.floating-circle {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    opacity: .7;
+}
+
+.circle1 {
+
+    width: 300px;
+
+    height: 300px;
+
+    background: #3b82f6;
+
+    top: -60px;
+
+    left: -60px;
+}
+
+.circle2 {
+
+    width: 250px;
+
+    height: 250px;
+
+    background: #06b6d4;
+
+    bottom: 40px;
+
+    right: 40px;
+}
+
+.circle3 {
+
+    width: 180px;
+
+    height: 180px;
+
+    background: #6366f1;
+
+    top: 45%;
+
+    left: 45%;
+}
+
+
+/* ===================================
+   LEFT SECTION
+=================================== */
+
+.left-side {
+
+    flex: 1;
+
+    color: white;
+}
+
+.left-side h1 {
+
+    font-size: 3.5rem;
+
+    font-weight: 800;
+
+    margin-top: 20px;
+}
+
+.left-side p {
+
+    margin-top: 20px;
+
+    font-size: 18px;
+
+    opacity: .9;
+
+    line-height: 1.7;
+}
+
+
+/* ===================================
+   BADGE
+=================================== */
+
+.badge {
+
+    background: rgba(255,255,255,.15);
+
+    padding: 10px 20px;
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(10px);
+
+    font-weight: 600;
+}
+
+
+/* ===================================
+   FEATURES
+=================================== */
+
+.features {
+
+    margin-top: 35px;
+}
+
+.feature {
+
+    margin-bottom: 18px;
+
+    font-size: 17px;
+}
+
+.feature i {
+
+    color: #7dd3fc;
+
+    margin-right: 10px;
+}
+
+
+/* ===================================
+   GLASS CARD
+=================================== */
+
+.insurance-card {
+
+    width: 650px;
+
+    padding: 35px;
+
+    background: rgba(255,255,255,.12);
+
+    backdrop-filter: blur(25px);
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    box-shadow: 0 20px 45px rgba(0,0,0,.30);
+}
+
+.insurance-card h2 {
+
+    color: white;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+    font-weight: 700;
+}
+
+
+/* ===================================
+   FORM
+=================================== */
+
+.form-control,
+.custom-select {
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.94);
+
+    transition: .3s;
+}
+
+.form-control:focus,
+.custom-select:focus {
+
+    box-shadow: 0 0 15px rgba(59,130,246,.50);
+
+    outline: none;
+}
+
+
+/* ===================================
+   BUTTONS
+=================================== */
+
+.btn-save {
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-weight: 600;
+
+    background: linear-gradient(
+        90deg,
+        #2563eb,
+        #0369a1
+    );
+
+    transition: .3s;
+}
+
+.btn-reset {
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-weight: 600;
+
+    background: linear-gradient(
+        90deg,
+        #ef4444,
+        #dc2626
+    );
+
+    transition: .3s;
+}
+
+.btn-save:hover,
+.btn-reset:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(0,0,0,.25);
+}
+
+
+/* ===================================
+   TABLE
+=================================== */
+
+.table {
+
+    color: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+.table thead {
+
+    background: rgba(255,255,255,.12);
+}
+
+.table tbody tr {
+
+    transition: .25s;
+}
+
+.table tbody tr:hover {
+
+    background: rgba(255,255,255,.08);
+}
+
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media(max-width:992px){
+
+    .insurance-container {
+
+        flex-direction: column;
+    }
+
+    .left-side {
+
+        text-align: center;
+    }
+
+    .insurance-card {
+
+        width: 100%;
+    }
+
+    .left-side h1 {
+
+        font-size: 2.5rem;
+    }
+}

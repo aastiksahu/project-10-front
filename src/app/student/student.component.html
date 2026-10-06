@@ -1,0 +1,206 @@
+<div class="student-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="student-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">🎓 Student Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Student
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    Student
+                </h1>
+
+                <p>
+                    Register and manage student records efficiently within the academic management system.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-user-graduate"></i>
+                        Student Records
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-building"></i>
+                        College Association
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-id-card"></i>
+                        Enrollment Tracking
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="student-card">
+
+                <h2 *ngIf="!form.data.id">Add Student</h2>
+                <h2 *ngIf="form.data.id>0">Update Student</h2>
+
+                <h2 class="text-success" *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                </h2>
+
+                <h2 class="text-danger" *ngIf="form.error && form.message">
+                    {{ form.message }}
+                </h2>
+
+                <form>
+
+                    <!-- Enrolment Number -->
+
+                    <div class="mb-3">
+
+                        <input type="text" name="enrolNo" [(ngModel)]="form.data.enrolNo" class="form-control"
+                            placeholder="Enrollment Number">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.enrolNo}}
+                        </span>
+
+                    </div>
+
+                    <!-- First & Last Name -->
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="firstName" [(ngModel)]="form.data.firstName" class="form-control"
+                                placeholder="First Name">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.firstName}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="lastName" [(ngModel)]="form.data.lastName" class="form-control"
+                                placeholder="Last Name">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.lastName}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Email -->
+
+                    <div class="mb-3">
+
+                        <input type="text" name="email" [(ngModel)]="form.data.email" class="form-control"
+                            placeholder="Email Address">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.email}}
+                        </span>
+
+                    </div>
+
+                    <!-- DOB & College -->
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="dob" [(ngModel)]="form.data.dob"
+                                [ngModel]="form.data.dob | date:'yyyy-MM-dd'" class="form-control"
+                                placeholder="Date of Birth" onfocus="(this.type='date')"
+                                onblur="if(!this.value)this.type='text'">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.dob}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <select name="collegeId" [(ngModel)]="form.data.collegeId"
+                                class="form-select custom-select">
+
+                                <option value="undefined">
+                                    Select College
+                                </option>
+
+                                <option *ngFor="let obj of form.preload.collegeList" [value]="obj.key">
+
+                                    {{obj.value}}
+
+                                </option>
+
+                            </select>
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.collegeId}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Mobile -->
+
+                    <div class="mb-3">
+
+                        <input type="text" name="phoneNo" [(ngModel)]="form.data.phoneNo" maxlength="10"
+                            class="form-control" placeholder="Mobile Number">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.phoneNo}}
+                        </span>
+
+                    </div>
+
+                    <!-- Buttons -->
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button type="button" (click)="submit()" class="btn-save flex-fill">
+
+                            Save Student
+
+                        </button>
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

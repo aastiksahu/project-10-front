@@ -1,0 +1,229 @@
+<div class="user-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="user-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">👤 User Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    User
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    User
+                </h1>
+
+                <p>
+                    Add and manage user accounts securely within the system.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-user-shield"></i>
+                        Role Based Access
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-lock"></i>
+                        Secure Authentication
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-database"></i>
+                        Centralized Management
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="user-card">
+
+                <h2 *ngIf="!form.data.id">Add User</h2>
+                <h2 *ngIf="form.data.id>0">Update User</h2>
+
+                <h2 class="text-success" *ngIf="!form.error && form.message">{{ form.message }}</h2>
+                <h2 class="text-danger" *ngIf="form.error && form.message">{{ form.message }}</h2>
+
+                <!-- ================= PROFILE IMAGE ================= -->
+
+                <div class="profile-upload">
+
+                    <!-- New Selected Image -->
+                    <img *ngIf="form.data.imagePreview" [src]="form.data.imagePreview" class="profile-image">
+
+                    <!-- Existing Image -->
+                    <img *ngIf="!form.data.imagePreview && form.data.imageId"
+                        [src]="'http://localhost:8080/User/profilePic/' + form.data.id" class="profile-image">
+
+                    <!-- Default Image -->
+                    <img *ngIf="!form.data.imagePreview && !form.data.imageId" src="assets/images/default-user.png"
+                        class="profile-image">
+
+                    <label class="upload-btn">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        {{form.data.id ? 'Change Photo' : 'Upload Photo'}}
+
+                        <input type="file" accept="image/*" (change)="onFileSelect($event)" hidden>
+
+                    </label>
+
+                </div>
+
+                <!-- ================================================ -->
+
+                <form>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="firstName" [(ngModel)]="form.data.firstName" class="form-control"
+                                placeholder="First Name">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.firstName}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="lastName" [(ngModel)]="form.data.lastName" class="form-control"
+                                placeholder="Last Name">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.lastName}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" name="loginId" [(ngModel)]="form.data.loginId" class="form-control"
+                            placeholder="Login ID">
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.loginId}}
+                        </span>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="phone" [(ngModel)]="form.data.phone" maxlength="10"
+                                class="form-control" placeholder="Mobile Number">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.phone}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="alternateMobile" [(ngModel)]="form.data.alternateMobile"
+                                maxlength="10" class="form-control" placeholder="Alternate Mobile Number">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.alternateMobile}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="password" name="password" [(ngModel)]="form.data.password" class="form-control"
+                            placeholder="Password">
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.password}}
+                        </span>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="dob" [(ngModel)]="form.data.dob"
+                                [ngModel]="form.data.dob | date:'yyyy-MM-dd'" class="form-control"
+                                placeholder="Date of Birth" onfocus="(this.type='date')"
+                                onblur="if(!this.value)this.type='text'">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.dob}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <select name="gender" [(ngModel)]="form.data.gender" class="form-select custom-select">
+                                <option value="undefined">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.gender}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <select name="roleId" [(ngModel)]="form.data.roleId" class="form-select custom-select">
+                                <option selected disabled>
+                                    Select Role
+                                </option>
+                                <option value="undefined">Select Role</option>
+                                <option *ngFor="let obj of form.preload.roleList" [value]="obj.key">{{obj.value}}
+                                </option>
+                            </select>
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.roleId}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <select name="status" [(ngModel)]="form.data.status" class="form-select custom-select">
+                                <option value="undefined">Select Status</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.status}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <!-- <button (click)="submit()" class="btn-save flex-fill">
+                            Save User
+                        </button> -->
+
+                        <button (click)="submit()" class="btn-save flex-fill">
+                            {{ form.data.id > 0 ? 'Update User' : 'Add User' }}
+                        </button>
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

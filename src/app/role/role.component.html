@@ -1,0 +1,113 @@
+<div class="role-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="role-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">🔐 Role Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Role
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    Role
+                </h1>
+
+                <p>
+                    Create and manage roles to control user permissions and
+                    system access efficiently.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-user-shield"></i>
+                        Access Control
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-key"></i>
+                        Permission Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-lock"></i>
+                        Secure Authorization
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="role-card">
+
+                <h2 *ngIf="!form.data.id">Add Role</h2>
+                <h2 *ngIf="form.data.id>0">Update Role</h2>
+
+                <h2 style="color: green;" *ngIf="!form.error && form.message">{{form.message}}</h2>
+                <h2 class="text-danger" *ngIf="form.error && form.message">{{form.message}}</h2>
+
+                <form>
+
+                    <div class="mb-3">
+                        <input type="text" name="name" [(ngModel)]="form.data.name" class="form-control"
+                            placeholder="Role Name">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.name}}
+                        </span>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <textarea rows="4" name="description" [(ngModel)]="form.data.description"
+                            class="form-control description-box" placeholder="Role Description">
+                        </textarea>
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.description}}
+                        </span>
+
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button type="button" (click)="submit()" class="btn-save flex-fill">
+
+                            Save Role
+
+                        </button>
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

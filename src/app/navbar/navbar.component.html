@@ -1,0 +1,386 @@
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+
+    <div class="container">
+
+        <a routerLink="/dashboard" class="navbar-brand">
+            <i class="fa-solid fa-bolt"></i>
+            Rays Portal
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-center">
+
+                <!-- Guest User -->
+                <ng-container *ngIf="!isLogin()">
+
+                    <li class="nav-item me-3">
+                        <span class="user-info">
+                            <i class="fa-solid fa-user"></i>
+                            {{ 'Greetings.HiGuest' | translate }}
+                        </span>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <button routerLink="/login" class="login-btn">
+                            {{ 'Links.Login' | translate }}
+                        </button>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <button routerLink="/signup" class="signup-btn">
+                            {{ 'SignUp' | translate }}
+                        </button>
+                    </li>
+
+                    <li class="nav-item ms-3">
+                        <select #locale class="language-select" (change)="changeLocale(locale.value)">
+                            <option value="0">{{ 'LocaleSelect.Select' | translate }}</option>
+                            <option value="en">{{ 'LocaleSelect.English' | translate }}</option>
+                            <option value="hi">{{ 'LocaleSelect.Hindi' | translate }}</option>
+                        </select>
+                    </li>
+
+                </ng-container>
+
+                <!-- Logged In User -->
+                <ng-container *ngIf="isLogin()">
+
+                    <li class="nav-item dropdown-custom user-dropdown">
+
+                        <a class="user-info nav-link">
+
+                            <!-- User Image -->
+                            <img *ngIf="form.data.imageId"
+                                [src]="'http://localhost:8080/User/profilePic/' + form.data.id" class="navbar-user-img">
+
+                            <!-- Default Icon -->
+                            <i *ngIf="!form.data.imageId" class="fa-solid fa-circle-user navbar-user-icon"></i>
+
+                            <span>
+                                {{ 'Greetings.HiUser' | translate:{name: form.data.fname} }}
+                            </span>
+
+                            <span class="role-badge">
+                                {{form.data.role}}
+                            </span>
+
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+
+                            <li>
+                                <a (click)="forward()">
+                                    <i class="fa-solid fa-user"></i>
+                                    {{ 'Links.MyProfile' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/changepassword">
+                                    <i class="fa-solid fa-key"></i>
+                                    {{ 'Links.ChangePassword' | translate }}
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <!-- User -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.User' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/user">
+                                    {{ 'Links.AddUser' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/userlist">
+                                    {{ 'Links.UserList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- Role -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Role' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/role">
+                                    {{ 'Links.AddRole' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/rolelist">
+                                    {{ 'Links.RoleList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- College -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.College' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/college">
+                                    {{ 'Links.AddCollege' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/collegelist">
+                                    {{ 'Links.CollegeList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- Student -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Student' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/student">
+                                    {{ 'Links.AddStudent' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/studentlist">
+                                    {{ 'Links.StudentList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- Marksheet -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Marksheet' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/marksheet">
+                                    {{ 'Links.AddMarksheet' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/marksheetlist">
+                                    {{ 'Links.MarksheetList' | translate }}
+                                </a>
+                            </li>
+
+                             <li>
+                                <a routerLink="/marksheetmeritlist">
+                                    {{ 'Links.MarksheetMeritList' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/getmarksheet">
+                                    {{ 'Links.GetMarksheet' | translate }}
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <!-- Course -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Course' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/course">
+                                    {{ 'Links.AddCourse' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/courselist">
+                                    {{ 'Links.CourseList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- Subject -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Subject' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/subject">
+                                    {{ 'Links.AddSubject' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/subjectlist">
+                                    {{ 'Links.SubjectList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- TimeTable -->
+                    <!-- <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.TimeTable' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/timetable">
+                                    {{ 'Links.AddTimetable' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/timetablelist">
+                                    {{ 'Links.TimetableList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li> -->
+
+                    <!-- Faculty -->
+                    <!-- <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Faculty' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/faculty">
+                                    {{ 'Links.AddFaculty' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/facultylist">
+                                    {{ 'Links.FacultyList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li> -->
+
+                    <!-- Insurance -->
+                    <!-- <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Insurance' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/insurance">
+                                    {{ 'Links.AddInsurance' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/insurancelist">
+                                    {{ 'Links.InsuranceList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li> -->
+
+                    <!-- Vehicle -->
+                    <li class="nav-item dropdown-custom">
+
+                        <a class="nav-link">
+                            {{ 'Links.Vehicle' | translate }}
+                        </a>
+
+                        <ul class="dropdown-custom-menu">
+                            <li>
+                                <a routerLink="/vehicle">
+                                    {{ 'Links.AddVehicle' | translate }}
+                                </a>
+                            </li>
+
+                            <li>
+                                <a routerLink="/vehiclelist">
+                                    {{ 'Links.VehicleList' | translate }}
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <!-- Language Selector -->
+                    <li class="nav-item ms-3">
+                        <select #locale class="language-select" (change)="changeLocale(locale.value)">
+                            <option value="0">{{ 'LocaleSelect.Select' | translate }}</option>
+                            <option value="en">{{ 'LocaleSelect.English' | translate }}</option>
+                            <option value="hi">{{ 'LocaleSelect.Hindi' | translate }}</option>
+                        </select>
+                    </li>
+
+                    <!-- Logout -->
+                    <li class="nav-item ms-3">
+                        <button class="signup-btn" (click)="logout()">
+                            {{ 'Links.Logout' | translate }}
+                        </button>
+                    </li>
+
+                </ng-container>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>

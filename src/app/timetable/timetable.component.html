@@ -1,0 +1,216 @@
+<div class="timetable-page">
+
+    <!-- Background Effects -->
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="timetable-container">
+
+            <!-- Left Side -->
+
+            <div class="left-side">
+
+                <span class="badge">📅 Examination Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Timetable
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    Timetable
+                </h1>
+
+                <p>
+                    Add and manage examination schedules efficiently with
+                    secure and centralized timetable management.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-calendar-check"></i>
+                        Exam Schedule Planning
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-clock"></i>
+                        Time Slot Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-book"></i>
+                        Course & Subject Tracking
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Side -->
+
+            <div class="timetable-card">
+
+                <h2 *ngIf="!form.data.id">Add Timetable</h2>
+                <h2 *ngIf="form.data.id>0">Update Timetable</h2>
+
+                <h3 class="text-success" *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                </h3>
+
+                <h3 class="text-danger" *ngIf="form.error && form.message">
+                    {{ form.message }}
+                </h3>
+
+                <form>
+
+                    <!-- Course -->
+
+                    <div class="mb-3">
+                        <select name="courseId" [(ngModel)]="form.data.courseId" class="form-select custom-select">
+
+                            <option value="undefined">
+                                Select Course
+                            </option>
+
+                            <option *ngFor="let obj of form.preload.courseList" [value]="obj.key">
+                                {{obj.value}}
+                            </option>
+
+                        </select>
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.courseId}}
+                        </span>
+                    </div>
+
+                    <!-- Subject -->
+
+                    <div class="mb-3">
+                        <select name="subjectId" [(ngModel)]="form.data.subjectId" class="form-select custom-select">
+
+                            <option value="undefined">
+                                Select Subject
+                            </option>
+
+                            <option *ngFor="let obj of form.preload.subjectList" [value]="obj.key">
+                                {{obj.value}}
+                            </option>
+
+                        </select>
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.subjectId}}
+                        </span>
+                    </div>
+
+                    <!-- Semester & Date -->
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <select name="semester" [(ngModel)]="form.data.semester" class="form-select custom-select">
+
+                                <option value="undefined">
+                                    Select Semester
+                                </option>
+
+                                <option value="1st  Semester">1St Semester</option>
+                                <option value="2nd Semester">2nd Semester</option>
+                                <option value="3rd Semester">3rd Semester</option>
+                                <option value="4th Semester">4th Semester</option>
+                                <option value="5th Semester">5th Semester</option>
+                                <option value="6th Semester">6th Semester</option>
+                                <option value="7th Semester">7th Semester</option>
+                                <option value="8th Semester">8th Semester</option>
+
+                            </select>
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.semester}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="examDate" [(ngModel)]="form.data.examDate"
+                                [ngModel]="form.data.examDate | date:'yyyy-MM-dd'" class="form-control"
+                                placeholder="Date of Exam" onfocus="(this.type='date')"
+                                onblur="if(!this.value)this.type='text'">
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.examDate}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <!-- Exam Time -->
+
+                    <div class="mb-3">
+
+                        <select name="examTime" [(ngModel)]="form.data.examTime" class="form-select custom-select">
+
+                            <option value="undefined">
+                                Select Exam Time
+                            </option>
+
+                            <option value="08:00 AM to 11:00 AM">
+                                09:00 AM to 12:00 AM
+                            </option>
+
+                            <option value="12:00 PM to 03:00 PM">
+                                12:00 PM to 03:00 PM
+                            </option>
+
+                            <option value="04:00 PM to 07:00 PM">
+                                04:00 PM to 07:00 PM
+                            </option>
+
+                        </select>
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.examTime}}
+                        </span>
+                    </div>
+
+                    <!-- Description -->
+
+                    <div class="mb-3">
+
+                        <textarea name="description" [(ngModel)]="form.data.description" rows="4"
+                            class="form-control textarea-control" placeholder="Enter Description"></textarea>
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.description}}
+                        </span>
+                    </div>
+
+                    <!-- Buttons -->
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button type="button" (click)="submit()" class="btn-save flex-fill">
+
+                            Save Timetable
+
+                        </button>
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,177 @@
+<div class="user-page">
+
+    <!-- Floating Background -->
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="user-list-card">
+
+            <!-- Header -->
+            <div class="text-center mb-4">
+
+                <span class="badge-custom">
+                    🏆 Merit Ranking
+                </span>
+
+                <h1 class="page-title">
+                    Marksheet Merit List
+                </h1>
+
+                <p class="page-subtitle">
+                    Top Performing Students
+                </p>
+
+                <!-- Success Message -->
+                <h5 class="text-success"
+                    *ngIf="!form.error && form.message">
+
+                    {{form.message}}
+
+                </h5>
+
+                <!-- Error Message -->
+                <h5 class="text-danger"
+                    *ngIf="form.error && form.message">
+
+                    {{form.message}}
+
+                </h5>
+
+            </div>
+
+            <!-- Action Buttons -->
+
+            <div class="d-flex justify-content-end mb-4">
+
+                <button
+                    class="btn-save"
+                    (click)="forward('/jasperReport')">
+
+                    <i class="fa fa-print"></i>
+
+                    Print
+
+                </button>
+
+            </div>
+
+            <!-- Merit Table -->
+
+            <div
+                class="table-responsive"
+                *ngIf="form.list.length > 0">
+
+                <table class="table custom-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>S.No</th>
+
+                            <th>Roll No</th>
+
+                            <th>Name</th>
+
+                            <th>Physics</th>
+
+                            <th>Chemistry</th>
+
+                            <th>Maths</th>
+
+                            <th>Total</th>
+
+                            <th>Percentage</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr
+                            *ngFor="let m of form.list; let i=index">
+
+                            <td>
+
+                                {{(form.pageNo*5)+i+1}}
+
+                            </td>
+
+                            <td>
+
+                                {{m.rollNo}}
+
+                            </td>
+
+                            <td>
+
+                                {{m.name}}
+
+                            </td>
+
+                            <td>
+
+                                {{m.physics}}
+
+                            </td>
+
+                            <td>
+
+                                {{m.chemistry}}
+
+                            </td>
+
+                            <td>
+
+                                {{m.maths}}
+
+                            </td>
+
+                            <td>
+
+                                {{m.physics + m.chemistry + m.maths}}
+
+                            </td>
+
+                            <td>
+
+                                {{
+                                ((m.physics +
+                                m.chemistry +
+                                m.maths) * 100) / 300
+                                | number:'2.0-2'
+                                }} %
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Bottom Buttons -->
+
+            <div class="action-panel mt-4">
+
+                <button
+                    class="btn-reset"
+                    (click)="forward('/marksheetList')">
+
+                    ← Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

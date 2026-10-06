@@ -1,0 +1,143 @@
+<div class="subject-page">
+
+    <!-- Floating Background Effects -->
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="subject-container">
+
+            <!-- Left Side -->
+            <div class="left-side">
+
+                <span class="badge">📚 Subject Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Subject
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    Subject
+                </h1>
+
+                <p>
+                    Create and manage subjects efficiently within the academic
+                    management system.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-book"></i>
+                        Subject Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-graduation-cap"></i>
+                        Course Mapping
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-layer-group"></i>
+                        Organized Curriculum
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Side -->
+            <div class="subject-card">
+
+                <h2 *ngIf="!form.data.id">Add Subject</h2>
+                <h2 *ngIf="form.data.id>0">Update Subject</h2>
+
+                <h3 class="success-msg" *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                </h3>
+
+                <h3 class="error-msg" *ngIf="form.error && form.message">
+                    {{ form.message }}
+                </h3>
+
+                <form>
+
+                    <!-- Subject Name -->
+                    <div class="mb-3">
+                        <input type="text" name="name" [(ngModel)]="form.data.name" class="form-control"
+                            placeholder="Enter Subject Name">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.name}}
+                        </span>
+                    </div>
+
+                    <!-- Course -->
+                    <div class="mb-3">
+
+                        <select name="courseId" [(ngModel)]="form.data.courseId" class="form-select custom-select">
+
+                            <option value="undefined">
+                                Select Course
+                            </option>
+
+                            <option *ngFor="let obj of form.preload.courseList" [value]="obj.key">
+
+                                {{obj.value}}
+
+                            </option>
+
+                        </select>
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.courseId}}
+                        </span>
+
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+
+                        <textarea rows="4" name="description" [(ngModel)]="form.data.description"
+                            class="form-control textarea-control" placeholder="Enter Subject Description">
+                        </textarea>
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.description}}
+                        </span>
+
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button type="button" (click)="submit()" class="btn-save flex-fill">
+
+                            Save Subject
+
+                        </button>
+
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

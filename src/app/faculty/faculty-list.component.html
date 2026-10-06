@@ -1,0 +1,227 @@
+<div class="user-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="user-list-card">
+
+            <!-- Header -->
+
+            <div class="text-center mb-4">
+
+                <span class="badge-custom">
+                    🎓 Faculty Management
+                </span>
+
+                <h1 class="page-title">
+                    Faculty List
+                </h1>
+
+                <p class="page-subtitle">
+                    Search, manage and maintain faculty records
+                </p>
+
+                <div class="text-center mt-4" *ngIf="form.list.length == 0">
+
+                    <h4 class="text-white">
+                        No Records Found
+                    </h4>
+
+                </div>
+
+                <h5 class="text-success" *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+                <h5 class="text-danger" *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h5>
+
+            </div>
+
+            <!-- Search Panel -->
+
+            <div class="search-card">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <input type="text"
+                               class="form-control"
+                               placeholder="First Name"
+                               [(ngModel)]="form.searchParams.firstName">
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+
+                        <input type="text"
+                               class="form-control"
+                               placeholder="Email ID"
+                               [(ngModel)]="form.searchParams.email">
+
+                    </div>
+
+                </div>
+
+                <div class="text-center">
+
+                    <button class="btn-save me-2"
+                            (click)="search()">
+
+                        Search
+
+                    </button>
+
+                    <button class="btn-reset"
+                            (click)="reset()">
+
+                        Reset
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div class="table-responsive mt-4"
+                 *ngIf="form.list.length > 0">
+
+                <table class="table custom-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+
+                                <input type="checkbox"
+                                       [(ngModel)]="isMasterSel"
+                                       (change)="checkUncheckAll($event)">
+
+                            </th>
+
+                            <th>S.No</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Date of Birth</th>
+                            <th>Gender</th>
+                            <th>Phone No</th>
+                            <th>Email ID</th>
+                            <th>Qualification</th>
+                            <th>College</th>
+                            <th>Course</th>
+                            <th>Subject</th>
+                            <th>Edit</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let m of form.list; let i=index">
+
+                            <td>
+
+                                <input type="checkbox"
+                                       #checkboxes
+                                       (change)="checklistUpdate()"
+                                       [id]="m.id"
+                                       [value]="isMasterSel">
+
+                            </td>
+
+                            <td>{{(form.pageNo*5)+i+1}}</td>
+                            <td>{{m.firstName}}</td>
+                            <td>{{m.lastName}}</td>
+                            <td>{{m.dob | date:'dd-MM-yyyy'}}</td>
+                            <td>{{m.gender}}</td>
+                            <td>{{m.phoneNo}}</td>
+                            <td>{{m.email}}</td>
+                            <td>{{m.qualification}}</td>
+                            <td>{{m.collegeName}}</td>
+                            <td>{{m.courseName}}</td>
+                            <td>{{m.subjectName}}</td>
+
+                            <td>
+
+                                <button class="btn btn-sm btn-primary"
+                                        (click)="forward('/faculty/' + m.id)">
+
+                                    Edit
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Bottom Action Buttons -->
+
+            <div class="action-panel mt-4"
+                 *ngIf="form.list.length > 0">
+
+                <button class="btn-reset"
+                        (click)="previous()"
+                        [disabled]="form.pageNo == 0">
+
+                    Previous
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="forward('/faculty')">
+
+                    New Faculty
+
+                </button>
+
+                <button class="btn-danger-custom"
+                        (click)="deleteMany()">
+
+                    Delete
+
+                </button>
+
+                <button class="btn-save"
+                        (click)="next()"
+                        [disabled]="form.nextListSize == 0">
+
+                    Next
+
+                </button>
+
+            </div>
+
+            <!-- Back Button -->
+
+            <div class="text-center mt-4"
+                 *ngIf="form.list.length == 0">
+
+                <button class="btn-reset"
+                        (click)="reset()">
+
+                    Back
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

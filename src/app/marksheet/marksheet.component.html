@@ -1,0 +1,160 @@
+<div class="marksheet-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="marksheet-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">📄 Marksheet Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Marksheet
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    Marksheet
+                </h1>
+
+                <p>
+                    Manage student marksheets, academic records and examination
+                    results securely within the system.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-graduation-cap"></i>
+                        Student Performance Tracking
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-chart-line"></i>
+                        Result Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-file-alt"></i>
+                        Digital Record Keeping
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="marksheet-card">
+
+                <h2 *ngIf="!form.data.id">Add Marksheet</h2>
+                <h2 *ngIf="form.data.id>0">Update Marksheet</h2>
+
+                <h2 class="text-success" *ngIf="!form.error && form.message">
+                    {{ form.message }}
+                </h2>
+
+                <h2 class="text-danger" *ngIf="form.error && form.message">
+                    {{ form.message }}
+                </h2>
+
+                <form>
+
+                    <div class="mb-3">
+                        <input type="text" name="rollNo" [(ngModel)]="form.data.rollNo" maxlength="12"
+                            class="form-control" placeholder="Enter Roll Number">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.rollNo}}
+                        </span>
+                    </div>
+
+                    <div class="mb-3">
+                        <select name="studentId" [(ngModel)]="form.data.studentId" class="form-select custom-select">
+
+                            <option value="undefined">
+                                Select Student
+                            </option>
+
+                            <option *ngFor="let obj of form.preload.studentList" [value]="obj.key">
+                                {{obj.value}}
+                            </option>
+
+                        </select>
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.studentId}}
+                        </span>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+
+                            <input type="number" name="physics" [(ngModel)]="form.data.physics" class="form-control"
+                                placeholder="Physics" min="0" max="100">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.physics}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <input type="number" name="chemistry" [(ngModel)]="form.data.chemistry" class="form-control"
+                                placeholder="Chemistry" min="0" max="100">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.chemistry}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <input type="number" name="maths" [(ngModel)]="form.data.maths" class="form-control"
+                                placeholder="Maths" min="0" max="100">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.maths}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button type="button" (click)="submit()" class="btn-save flex-fill">
+
+                            Save Marksheet
+
+                        </button>
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

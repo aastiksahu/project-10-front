@@ -1,0 +1,259 @@
+<div class="faculty-page">
+
+    <div class="floating-circle circle1"></div>
+    <div class="floating-circle circle2"></div>
+    <div class="floating-circle circle3"></div>
+
+    <div class="container">
+
+        <div class="faculty-container">
+
+            <!-- Left Section -->
+
+            <div class="left-side">
+
+                <span class="badge">🎓 Faculty Management</span>
+
+                <h1 *ngIf="!form.data.id">
+                    Add New
+                    <br>
+                    Faculty
+                </h1>
+
+                <h1 *ngIf="form.data.id>0">
+                    Update Existing
+                    <br>
+                    Faculty
+                </h1>
+
+                <p>
+                    Manage faculty information, qualifications, courses,
+                    colleges and subjects with a secure and modern interface.
+                </p>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa fa-user-graduate"></i>
+                        Faculty Profile Management
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-book-open"></i>
+                        Course & Subject Assignment
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa fa-building-columns"></i>
+                        College Integration
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Section -->
+
+            <div class="faculty-card">
+
+                <h2 *ngIf="!form.data.id">Add Faculty</h2>
+                <h2 *ngIf="form.data.id>0">Update Faculty</h2>
+
+                <h2 style="color: green;" *ngIf="!form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <h2 class="text-danger" *ngIf="form.error && form.message">
+                    {{form.message}}
+                </h2>
+
+                <form>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="firstName" [(ngModel)]="form.data.firstName" class="form-control"
+                                placeholder="First Name">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.firstName}}
+                            </span>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="lastName" [(ngModel)]="form.data.lastName" class="form-control"
+                                placeholder="Last Name">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.lastName}}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="text" name="email" [(ngModel)]="form.data.email" class="form-control"
+                            placeholder="Email Address">
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.email}}
+                        </span>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="dob" [(ngModel)]="form.data.dob"
+                                [ngModel]="form.data.dob | date:'yyyy-MM-dd'" class="form-control"
+                                placeholder="Date of Birth" onfocus="(this.type='date')"
+                                onblur="if(!this.value)this.type='text'">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.dob}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <select name="gender" [(ngModel)]="form.data.gender" class="form-select custom-select">
+
+                                <option value="undefined">
+                                    Select Gender
+                                </option>
+
+                                <option value="Male">
+                                    Male
+                                </option>
+
+                                <option value="Female">
+                                    Female
+                                </option>
+
+                            </select>
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.gender}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="phoneNo" [(ngModel)]="form.data.phoneNo" maxlength="10"
+                                class="form-control" placeholder="Mobile Number">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.phoneNo}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <input type="text" name="qualification" [(ngModel)]="form.data.qualification"
+                                class="form-control" placeholder="Qualification">
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.qualification}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <select name="collegeId" [(ngModel)]="form.data.collegeId"
+                                class="form-select custom-select">
+
+                                <option value="undefined">
+                                    Select College
+                                </option>
+
+                                <option *ngFor="let obj of form.preload.collegeList" [value]="obj.key">
+                                    {{obj.value}}
+                                </option>
+
+                            </select>
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.collegeId}}
+                            </span>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <select name="courseId" [(ngModel)]="form.data.courseId" class="form-select custom-select">
+
+                                <option value="undefined">
+                                    Select Course
+                                </option>
+
+                                <option *ngFor="let obj of form.preload.courseList" [value]="obj.key">
+                                    {{obj.value}}
+                                </option>
+
+                            </select>
+
+                            <span style="color:red; font-size:12px;">
+                                {{form.inputerror.courseId}}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <select name="subjectId" [(ngModel)]="form.data.subjectId" class="form-select custom-select">
+
+                            <option value="undefined">
+                                Select Subject
+                            </option>
+
+                            <option *ngFor="let obj of form.preload.subjectList" [value]="obj.key">
+                                {{obj.value}}
+                            </option>
+
+                        </select>
+
+                        <span style="color:red; font-size:12px;">
+                            {{form.inputerror.subjectId}}
+                        </span>
+
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex">
+
+                        <button (click)="submit()" class="btn-save flex-fill">
+                            Save Faculty
+                        </button>
+
+                        <button class="btn-reset flex-fill" (click)="reset()">
+
+                            Reset
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
