@@ -58,7 +58,11 @@
         "FacultyList": "फैकल्टी सूची",
         "Logout": "लॉगआउट",
         "Dashboard": "डैशबोर्ड",
-        "Login": "लॉगिन"
+        "Login": "लॉगिन",
+        "Vehicle": "वाहन",
+        "AddVehicle": "वाहन जोड़ें",
+        "VehicleList": "वाहन सूची",
+        "Add Vehicle": "वाहन जोड़ें"
     },
     "LocaleSelect": {
         "Select": "भाषा चुनें",
