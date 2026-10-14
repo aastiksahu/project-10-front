@@ -12,39 +12,39 @@
             <!-- Left Section -->
             <div class="left-side">
 
-                <span class="badge">🚗 Vehicle Management</span>
+                <span class="badge">🚗 {{ 'Vehicle.VehicleManagement' | translate }}</span>
 
                 <h1 *ngIf="!form.data.id">
-                    Add New
+                    {{ 'Vehicle.AddNew' | translate }}
                     <br>
-                    Vehicle
+                    {{ 'Vehicle.Vehicle' | translate }}
                 </h1>
 
                 <h1 *ngIf="form.data.id > 0">
-                    Update Existing
+                    {{ 'Vehicle.UpdateExisting' | translate }}
                     <br>
-                    Vehicle
+                    {{ 'Vehicle.Vehicle' | translate }}
                 </h1>
 
                 <p>
-                    Add and manage vehicle information securely within the system.
+                    {{ 'Vehicle.VehicleDescription' | translate }}
                 </p>
 
                 <div class="features">
 
                     <div class="feature">
                         <i class="fa fa-car"></i>
-                        Vehicle Management
+                         {{ 'Vehicle.VehicleManagement' | translate }}
                     </div>
 
                     <div class="feature">
                         <i class="fa fa-cogs"></i>
-                        Vehicle Details
+                         {{ 'Vehicle.VehicleDetails' | translate }}
                     </div>
 
                     <div class="feature">
                         <i class="fa fa-tag"></i>
-                        Price Tracking
+                         {{ 'Vehicle.PriceTracking' | translate }}
                     </div>
 
                 </div>
@@ -55,7 +55,7 @@
             <div class="insurance-card">
 
                 <h2 *ngIf="!form.data.id">
-                    Add Vehicle
+                    {{ 'Vehicle.AddVehicle' | translate }}
                 </h2>
 
                 <h2 *ngIf="form.data.id > 0">
@@ -83,7 +83,7 @@
                                name="vehicleName"
                                [(ngModel)]="form.data.vehicleName"
                                class="form-control"
-                               placeholder="Vehicle Name">
+                               [placeholder]="'Vehicle.VehicleName' | translate">
 
                         <span style="color:red;font-size:12px;">
                             {{form.inputerror.vehicleName}}
@@ -99,7 +99,7 @@
                                name="model"
                                [(ngModel)]="form.data.model"
                                class="form-control"
-                               placeholder="Vehicle Model">
+                               [placeholder]="'Vehicle.VehicleModel' | translate">
 
                         <span style="color:red;font-size:12px;">
                             {{form.inputerror.model}}
@@ -115,7 +115,7 @@
                                name="color"
                                [(ngModel)]="form.data.color"
                                class="form-control"
-                               placeholder="Vehicle Color">
+                               [placeholder]="'Vehicle.VehicleColor' | translate">
 
                         <span style="color:red;font-size:12px;">
                             {{form.inputerror.color}}
@@ -131,7 +131,7 @@
                                name="price"
                                [(ngModel)]="form.data.price"
                                class="form-control"
-                               placeholder="Vehicle Price">
+                               [placeholder]="'Vehicle.VehiclePrice' | translate">
 
                         <span style="color:red;font-size:12px;">
                             {{form.inputerror.price}}
@@ -146,13 +146,13 @@
                         <button
                             (click)="submit()"
                             class="btn-save flex-fill">
-                            Save Vehicle
+                            {{ 'Vehicle.SaveVehicle' | translate }}
                         </button>
 
                         <button
                             (click)="reset()"
                             class="btn-reset flex-fill">
-                            Reset
+                           {{ 'Vehicle.Reset' | translate }}
                         </button>
 
                     </div>
