@@ -83,7 +83,8 @@
         "VehicleDescription": "सिस्टम में वाहनों की जानकारी सुरक्षित रूप से जोड़ें और प्रबंधित करें।",
         "AddNew": "नया जोड़ें",
         "UpdateExisting": "अपडेट करें",
-        "Vehicle": "वाहन"
+        "Vehicle": "वाहन",
+        "UpdateVehicle": "वाहन अपडेट करें"
     },
     "VehicleList": {
         "Vehiclelist": "वाहन की सूची",

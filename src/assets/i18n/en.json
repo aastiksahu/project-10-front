@@ -82,7 +82,8 @@
         "VehicleDescription": "Add and manage vehicle information securely within the system.",
         "AddNew": "Add New",
         "UpdateExisting": "Update Existing",
-        "Vehicle": "Vehicle"
+        "Vehicle": "Vehicle",
+        "UpdateVehicle": "Update Vehicle"
     },
     "VehicleList": {
         "Vehiclelist": "Vehicle List",
